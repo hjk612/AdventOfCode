@@ -8,6 +8,7 @@ import re
 
 os.chdir('/Users/Hatim/Desktop/AdventOfCode/Day 3/')
 
+### used pythex -- https://pythex.org
 regex_pattern = re.compile('#(?P<id>\d*)\s@\s(?P<left>\d*),(?P<top>\d*):\s(?P<dim1>\d*)x(?P<dim2>\d*)')
 text_file = open('input.txt','r')
 data = text_file.read()
@@ -42,6 +43,8 @@ for item in re_results:
                 flag = False
                 continue
         
+        if flag == False:
+            continue
     if flag == True:
         answer = id_
     
