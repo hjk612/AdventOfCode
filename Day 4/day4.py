@@ -2,7 +2,7 @@ import os
 import re
 import datetime
 
-os.chdir('/Users/Hatim/Desktop/AdventOfCode/Day 4/')
+os.chdir('/Users/Hatim/Desktop/Git Repos/AdventOfCode/Day 4/')
 
 text_file = open('input.txt', 'r')
 data = text_file.read().rstrip()
@@ -53,21 +53,24 @@ minute = max(set(guard_time[id_guard]), key=guard_time[id_guard].count)
         
 answer = id_guard * minute
 
-no_guards_by_min = {}
-for _, value in guard_time.items():
-    freq_dict = {x:value.count(x) for x in value}
-    for m, n in freq_dict.items():
-        if m in no_guards_by_min:
-            no_guards_by_min[m] += n
-        else:
-            no_guards_by_min[m] = n
+### part 2
 
-max_minute = max(no_guards_by_min, key=lambda k: no_guards_by_min[k])
+###creating a temp variable to compare the frequency of maximum frequency for each minute
+max_min = -100
+
+###the final minute answer
+minute_ans = None
+
+### the final id answer
 id_ans = None
-temp = -100
-for _, value in guard_time.items():
-    freq_dict = {x:value.count(x) for x in value} 
-    if max_minute in freq_dict:
-        if freq_dict[max_minute] > temp:
-            id_ans = _
-            temp = freq_dict[max_minute]
+for minute in range(60):
+    minute_wise = {}
+    for key, value in guard_time.items():
+        minute_wise[key] = value.count(minute)
+    
+    id_ = max(minute_wise, key=minute_wise.get)
+    temp = minute_wise[id_]
+    if temp > max_min:
+        id_ans = id_
+        minute_ans = minute
+        max_min = temp
