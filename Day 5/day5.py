@@ -27,7 +27,7 @@ def reaction(string):
 part1 = reaction(string) 
 
 
-part2 = 10000000000000
+part2 = 1e12
 alphabets = [chr(i) for i in range(ord('a'),ord('z')+1)]
 for alphabet in alphabets:
     swaps = {alphabet: '', alphabet.upper(): ''}
