@@ -1,8 +1,3 @@
-'''
-Disclaimer -- Not an optimal solution.
-Takes quite some time. Will try to improve it over the next few days
-'''
-
 import os
 os.chdir('/Users/Hatim/Desktop/Git Repos/AdventOfCode/Day 5/')
 
