@@ -52,3 +52,22 @@ id_guard = max(guard_time, key=lambda x:len(guard_time[x]))
 minute = max(set(guard_time[id_guard]), key=guard_time[id_guard].count)   
         
 answer = id_guard * minute
+
+no_guards_by_min = {}
+for _, value in guard_time.items():
+    freq_dict = {x:value.count(x) for x in value}
+    for m, n in freq_dict.items():
+        if m in no_guards_by_min:
+            no_guards_by_min[m] += n
+        else:
+            no_guards_by_min[m] = n
+
+max_minute = max(no_guards_by_min, key=lambda k: no_guards_by_min[k])
+id_ans = None
+temp = -100
+for _, value in guard_time.items():
+    freq_dict = {x:value.count(x) for x in value} 
+    if max_minute in freq_dict:
+        if freq_dict[max_minute] > temp:
+            id_ans = _
+            temp = freq_dict[max_minute]
