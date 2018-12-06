@@ -12,16 +12,30 @@ string = text_file.read().rstrip()
 def explosion(string, i):
     return string[:i] + string[i+2:]
 
-should_restart = True
-while should_restart:
-    should_restart = False
-    for i in range(len(string)-1):
-        first = string[i]
-        second = string[i+1]
-            
+def reaction(string):
+    length = len(string)
+    index = 0
+    while index < (length - 1):
+        if index < 0:
+            index = 0
+        first = string[index]
+        second = string[index+1]
         if first.lower() == second.lower() and first != second:
-            string = explosion(string, i)
-            should_restart = True
-            break
+            string = explosion(string, index)
+            length -= 2
+            index -= 2
+        
+        index += 1
 
-answer = len(string)
+    return length
+
+part1 = reaction(string) 
+
+
+part2 = 10000000000000
+alphabets = [chr(i) for i in range(ord('a'),ord('z')+1)]
+for alphabet in alphabets:
+    swaps = {alphabet: '', alphabet.upper(): ''}
+    string_temp = ''.join(swaps.get(i,i) for i in string)
+    string_reaction = reaction(string_temp)
+    part2 = min(part2, string_reaction)
