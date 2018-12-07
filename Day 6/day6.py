@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-os.chdir('/Users/Hatim/Desktop/AdventOfCode/Day 6/')
+os.chdir('/Users/Hatim/Desktop/Git Repos/AdventOfCode/Day 6/')
 text_file = open('input.txt', 'r')
 
 data = text_file.read().strip()
@@ -20,7 +20,6 @@ min_x = min(centers,key=lambda item:item[0])[0]
 min_y = min(centers,key=lambda item:item[1])[1]
 
 counter = [0]*len(centers)
-
 def manhattan_distance(p, q):
 
     if(len(p) != len(q)):
@@ -37,9 +36,18 @@ for x in range(min_x, max_x + 1):
             continue
         if not (x == min_x or x == min_x or x == max_x or y == min_y or y == max_y):
             counter[np.argmin(distance)] += 1
+            
         else:
             counter[np.argmin(distance)] += 1e10
     
 counter = np.array(counter, dtype = int)
 part1 = counter[counter<1e10].max()
-        
+
+####part2 
+part2 = 0
+for x in range(min_x, max_x + 1):
+    for y in range(min_y, max_y + 1):
+        distance = sum([manhattan_distance((x,y), c) for c in centers])
+        if distance < 10000:
+            part2 += 1
+
